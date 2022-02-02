@@ -1,52 +1,72 @@
 package VirtualPet;
 
+
 public class Dragon {
-    private String dragonName;
-    private String scaleColor;
+    public String dragonName;
+    private  String scaleColor;
     private int age;
-    private String type;
+    private  String type;
     private int hunger;
     private int energy;
+    private int health;
 
-    public Dragon(String dragonName, String scaleColor, int age, int hunger, String type, int energy) {
+    public Dragon(String dragonName, String scaleColor, int age, int hunger, String type, int energy, int health) {
         this.dragonName = dragonName;
         this.scaleColor = scaleColor;
         this.age = age;
         this.hunger = 45;
         this.type = type;
         this.energy = energy;
+        this.health = health;
     }
 
-    public String getDragonname() {
+    public  String getDragonName() {
         return dragonName;
     }
 
-    public String getScaleColor() {
+    public  String getScaleColor() {
         return scaleColor;
     }
 
-    public int getAge() {
+    public  int getAge() {
         return age;
     }
 
-    public String getType() {
+    public  String getType() {
         return type;
     }
 
-    public int getHunger() {
+    public  int getHunger() {
         return hunger;
     }
 
-    public int getEnergy() {
+    public  int getEnergy() {
         return energy;
     }
 
-    public void tick() {
-        hunger++;
+    public  int getHealth() {
+        return health;
     }
-    public void tick2(){
+
+    public void trainAllDragon() {
+        hunger+= 10;
+        energy -= 10;
+    }
+    public  void fightABoss(){
          energy -= 30;
+         health -= 33;
     }
+    public void tick3() {
+        age ++;
+    }
+    public void doctorPetByName(){
+        health = 100;
+        energy = 100;
+    }
+    public void walk(){
+        energy -= 50;
+    }
+
 
 
     public String greeting() {
@@ -61,4 +81,13 @@ public class Dragon {
                     + ageMessage;
         }
     }
+    public String getStatus() {
+        String statusMessage = dragonName + " scale color: " + scaleColor + " age: " + age + " type: " + type + " hungerLvl: " + hunger + " energyLvl: " + energy + " healthLVL: " +
+                "" + health;
+
+        return statusMessage;
+    }
+
+
+
 }
