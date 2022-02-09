@@ -1,31 +1,25 @@
 package VirtualPet;
 
 
-public class Dragon {
-    public String dragonName;
-    private  String scaleColor;
-    private int age;
-    private  String type;
-    private int hunger;
-    private int energy;
-    private int health;
+public class Dragon extends Animal{
+    int age;
+    String type;
+    int energy;
+    int hunger;
 
-    public Dragon(String dragonName, String scaleColor, int age, int hunger, String type, int energy, int health) {
-        this.dragonName = dragonName;
-        this.scaleColor = scaleColor;
+    public Dragon(String name, int age, int energy, int health) {
+        super(name, health);
+
+
+        this.name = name;
         this.age = age;
-        this.hunger = 45;
         this.type = type;
         this.energy = energy;
         this.health = health;
     }
 
     public  String getDragonName() {
-        return dragonName;
-    }
-
-    public  String getScaleColor() {
-        return scaleColor;
+        return name;
     }
 
     public  int getAge() {
@@ -36,20 +30,18 @@ public class Dragon {
         return type;
     }
 
-    public  int getHunger() {
-        return hunger;
-    }
-
     public  int getEnergy() {
         return energy;
     }
+
+
 
     public  int getHealth() {
         return health;
     }
 
+
     public void trainAllDragon() {
-        hunger+= 10;
         energy -= 10;
     }
     public  void fightABoss(){
@@ -67,27 +59,23 @@ public class Dragon {
         energy -= 50;
     }
 
+    @Override
+    void animalSound() {
 
 
-    public String greeting() {
-        String ageMessage = "";
-        if (age < 100) {
-            ageMessage = "\nI am a young dragon baby";
-        } else if (age > 100 && age < 500) {
-            ageMessage = "\nI am a middle aged dragon";
         }
-        {
-            return "My name is" + dragonName + "\n my fur color is: " + scaleColor + "and I am " + age + " years old."
-                    + ageMessage;
-        }
-    }
+
     public String getStatus() {
-        String statusMessage = dragonName + " scale color: " + scaleColor + " age: " + age + " type: " + type + " hungerLvl: " + hunger + " energyLvl: " + energy + " healthLVL: " +
-                "" + health;
+        String statusMessage = name +  " hungerLvl: " + hunger + " healthLVL: " +
+                "" + health ;
 
         return statusMessage;
     }
 
+    @Override
+    void feed() {
+
+    }
 
 
 }
