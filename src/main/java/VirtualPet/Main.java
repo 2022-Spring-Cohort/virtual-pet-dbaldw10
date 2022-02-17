@@ -40,7 +40,7 @@ public class Main {
 
             } else if (userChoice.equalsIgnoreCase("Adopt")) {
                 AdoptAnAnimal();
-            } else if (userChoice.equalsIgnoreCase("Oil Robot")) {
+            } else if (userChoice.equalsIgnoreCase("Oil")) {
                 shelter.viewRobots();
                 String petName = userInput.nextLine();
                 shelter.oilRobotByName(petName);
@@ -60,17 +60,17 @@ public class Main {
     public static String mainMenu() {
         String menu = "";
         menu += "Please enter a selection from the choice below.\n";
-        menu += "View All Pets - Shows all pets in the shelter & adopted in one list\n";
-        menu += "View Pet Status - Shows all pets status. \n";
+        menu += "All Pets - Shows all pets in the shelter & adopted in one list\n";
+        menu += "Status - Shows all pets status. \n";
 
         menu += "Walk - drains energy.\n";
         menu += "Clean - cleans litter completely \n";
-        menu += "Add a dragon - Lets you add a dragon to the Shelter\n";
+        menu += "Add - Lets you add a dragon to the Shelter\n";
 
         menu += "Doctor - Restores an animals health to 100.\n";
         menu += "Adopt - Take one home with you!\n";
-        menu += "Train All Organic  - Lowers all energy(not for robots they never tire.) \n";
-        menu += "Oil Robot - Raises Oil LVl of Robot. \n";
+        menu += "Train All - Lowers all energy(not for robots they never tire.) \n";
+        menu += "Oil - Raises Oil LVl of Robot. \n";
         menu += "Exit - Exit Game. \n";
 
         return menuBling(menu);
