@@ -6,16 +6,17 @@ public class RobotTurkey extends Turkey implements Robot{
     int energyLVL;
     int powerLVL;
     int oilLVL;
+    int health;
 
     public RobotTurkey(String name,int  health,int  powerLVL,int  oilLVL, int energyLVL, int experience) {
         super(name, health, powerLVL, oilLVL);
 
         this.name = name;
         this.health = health;
-        this.oilLVL = 100;
-        this.powerLVL = 1000;
-        this.energyLVL = 75;
-        this.experience = 100;
+        this.oilLVL = oilLVL;
+        this.powerLVL = powerLVL;
+        this.energyLVL = energyLVL;
+        this.experience = experience;
 
     }
 
@@ -27,13 +28,15 @@ public class RobotTurkey extends Turkey implements Robot{
         return oilLVL;
     }
 
+    @Override
     public void oilRobot(){
-        oilLVL -= 10;
+        oilLVL += 10;
     }
 
 
     public void walk() {
         oilLVL += 10;
+        energyLVL -= 20;
     }
 
 
@@ -45,5 +48,14 @@ public class RobotTurkey extends Turkey implements Robot{
 
         return statusMessage;
     }
+    public void tick() {
+        health -= 10;
+    }
+
+    @Override
+    void doctorPetByName() {
+        health = 100;
+    }
+
 
 }

@@ -1,19 +1,19 @@
 package VirtualPet;
 
-    public class Turkey extends Animal {
+    public abstract class Turkey extends Animal {
          String featherColor;
          int age;
          int energy;
-         int litter;
+         int health;
 
 
         public Turkey(String name, int age, int energy, int health) {
             super(name, health);
             this.name = name;
-            this.featherColor = featherColor;
             this.age = age;
             this.energy = energy;
             this.health = health;
+
         }
 
 
@@ -26,25 +26,16 @@ package VirtualPet;
 
         }
 
-        public int getHealth() {
-            return health;
-        }
+        @Override
+        public void tick() {
 
-
-
-        public String getStatus() {
-            String statusMessage = name + " scale color: " + featherColor + " age: " + age + " hungerLvl: " + " energyLvl: " + energy + " healthLVL: " +
-                    "" + health;
-
-            return statusMessage;
         }
 
         @Override
         void feed() {
         }
 
-        public void walk(){
-            litter -= 10;
-        }
+        @Override
+        abstract void doctorPetByName();
 
     }

@@ -2,42 +2,60 @@ package VirtualPet;
 
 
 public class RobotDragon extends Dragon implements Robot {
-
-
-     int energy;
-     int oilLVL;
-     int powerLVL;
-
-    public RobotDragon(String name, int health, int powerLVL, int oilLVL) {
+    int experience;
+    int energyLVL;
+    int powerLVL;
+    int oilLVL;
+    int health;
+    public RobotDragon(String name,int  health,int  powerLVL,int  oilLVL, int energyLVL, int experience) {
         super(name, health, powerLVL, oilLVL);
 
         this.name = name;
         this.health = health;
-        this.energy = energy;
         this.oilLVL = oilLVL;
         this.powerLVL = powerLVL;
+        this.energyLVL = energyLVL;
+        this.experience = experience;
+
+
     }
 
+    public int getPowerLVL() {
+        return powerLVL;
+    }
 
-
-    public String getStatus() {
-        String statusMessage = "name: " + name + " |" + " health: " + health + " |" + " oilLvl: " + oilLVL + " powerLVL: " + powerLVL;
-
-        return statusMessage;
+    public int getOilLVL() {
+        return oilLVL;
     }
 
     @Override
-    public void oilRobot() {
-
+    public void oilRobot(){
+        oilLVL += 10;
     }
 
-    public void walk(){
 
+    public void walk() {
+        oilLVL += 10;
+        energyLVL -= 20;
     }
 
 
     public void animalSound() {
         this.animalSound();
-
     }
+    public String getStatus() {
+        String statusMessage = "name: " + name + " |" + " healthLVL: " +  health + " |" + "oilLVL: " + oilLVL + " |" + "powerLVL: " + powerLVL;
+
+        return statusMessage;
+    }
+    public void tick() {
+        health -= 10;
+    }
+
+    @Override
+    void doctorPetByName() {
+        health = 100;
+    }
+
+
 }

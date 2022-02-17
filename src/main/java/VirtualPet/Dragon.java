@@ -1,11 +1,12 @@
 package VirtualPet;
 
 
-public class Dragon extends Animal{
+public abstract class Dragon extends Animal{
     int age;
     String type;
     int energy;
     int hunger;
+    int health;
 
     public Dragon(String name, int age, int energy, int health) {
         super(name, health);
@@ -16,9 +17,10 @@ public class Dragon extends Animal{
         this.type = type;
         this.energy = energy;
         this.health = health;
+
     }
 
-    public  String getDragonName() {
+    public  String getName() {
         return name;
     }
 
@@ -42,21 +44,13 @@ public class Dragon extends Animal{
 
 
     public void trainAllDragon() {
-        energy -= 10;
+        health -= 10;
     }
-    public  void fightABoss(){
-         energy -= 30;
-         health -= 33;
-    }
-    public void tick3() {
-        age ++;
-    }
-    public void doctorPetByName(){
+
+
+     void doctorPetByName(){
         health = 100;
         energy = 100;
-    }
-    public void walk(){
-        energy -= 50;
     }
 
     @Override
@@ -64,13 +58,6 @@ public class Dragon extends Animal{
 
 
         }
-
-    public String getStatus() {
-        String statusMessage = name +  " hungerLvl: " + hunger + " healthLVL: " +
-                "" + health ;
-
-        return statusMessage;
-    }
 
     @Override
     void feed() {

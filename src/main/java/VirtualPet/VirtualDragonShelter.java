@@ -9,12 +9,12 @@ public class VirtualDragonShelter {
     public VirtualDragonShelter() {
         animalList = new ArrayList<>();
 
-        animalList.add(new OrganicDragon("Zallon", "ebony", 1109, "electric", 99, 100, 20));
-        animalList.add(new OrganicDragon("Freddy", "silver", 309, "ice", 10, 100, 35));
-        animalList.add(new OrganicDragon("Bekah", "rainbow", 35, "fire", 100, 100, 45));
-        animalList.add(new OrganicDragon("Lyric", "blue", 3, "fire", 70, 100, 50));
-        animalList.add(new RobotDragon("Zachary", 100, 99, 50));
-        animalList.add(new OrganicTurkey("Choppy", "gold", 10, "fire", 100, 25));
+        animalList.add(new OrganicDragon("Zallon",  1109, "electric", 99, 100, 0));
+        animalList.add(new OrganicDragon("Freddy",  309, "ice", 10, 100, 0));
+        animalList.add(new OrganicDragon("Bekah",  35, "fire", 100, 100, 0));
+        animalList.add(new OrganicDragon("Lyric",  3, "fire", 70, 100, 0));
+        animalList.add(new RobotDragon("Zachary", 100, 99, 50, 300, 35));
+        animalList.add(new OrganicTurkey("greg", "gold", 10, "fire", 100, 50, 0));
         animalList.add(new RobotTurkey("Zhoppy", 100, 3, 90, 30, 99));
 
     }
@@ -53,7 +53,7 @@ public class VirtualDragonShelter {
     }
 
     public void doctorPetByName(String name) {
-        findAnimalByName(name).doctorPetByName();
+        findOrganicAnimalByName(name).doctorAnimal();
     }
 
     public void trainAllDragons() {
@@ -64,11 +64,11 @@ public class VirtualDragonShelter {
 
     }
 
-    public RobotDragon findRobotDragonByName(String name) {
-        RobotDragon selectedRobot = null;
-        for (Animal currentDragon : animalList) {
-            if (currentDragon instanceof RobotDragon)
-                selectedRobot = (RobotDragon) currentDragon;
+    public Robot findRobotByName(String name) {
+        Robot selectedRobot = null;
+        for (Animal currentAnimal : animalList) {
+            if (currentAnimal instanceof Robot)
+                selectedRobot = (Robot) currentAnimal;
         }
         return selectedRobot;
     }
@@ -76,14 +76,15 @@ public class VirtualDragonShelter {
     public Animal findAnimalByName(String name) {
         Animal selectedAnimal = null;
         for (Animal currentAnimal : animalList) {
-            if (currentAnimal instanceof Animal)
-                selectedAnimal = (Animal) currentAnimal;
+            if (currentAnimal.getName().equalsIgnoreCase(name)) {
+                selectedAnimal = currentAnimal;
+            }
         }
         return selectedAnimal;
     }
 
-    public void oilDragonByName(String name) {
-        findRobotDragonByName(name).oilRobot();
+    public void oilRobotByName(String name) {
+        findRobotByName(name).oilRobot();
 
     }
 
@@ -93,13 +94,14 @@ public class VirtualDragonShelter {
     }
 
     public Organic findOrganicAnimalByName(String name) {
-        Organic selectedRobot = null;
-        for (Animal currentDragon : animalList) {
-            if (currentDragon instanceof Organic)
-                selectedRobot = (Organic) currentDragon;
+        Organic selectedOrganic = null;
+        for (Animal currentAnimal : animalList) {
+            if (currentAnimal instanceof Organic)
+                if(currentAnimal.getName().equalsIgnoreCase(name))
+                selectedOrganic = (Organic) currentAnimal;
 
         }
-        return selectedRobot;
+        return selectedOrganic;
     }
 
     private Dragon findDragonByName(String name) {
@@ -114,7 +116,7 @@ public class VirtualDragonShelter {
 
 
     public void adoptPetByName(String name) {
-        animalList.remove(findDragonByName(name));
+        animalList.remove(findAnimalByName(name));
     }
 
     public void addPet(Animal newPet) {

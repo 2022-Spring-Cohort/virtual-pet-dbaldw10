@@ -2,14 +2,12 @@ package VirtualPet;
 
 public abstract class Animal {
     String name;
-    static int health;
+    int health;
 
     public Animal(String name, int health) {
         this.name = "";
-        this.health = 75;
+        this.health = health;
     }
-
-    abstract void walk();
 
     abstract void animalSound();
 
@@ -26,15 +24,16 @@ public abstract class Animal {
         return name + " " + health;
     }
 
-    public static void tick() {
-        health -= 5;
-    }
-
     abstract void feed();
 
-    public void doctorPetByName() {
-        health = 100;
+    abstract void doctorPetByName();
+    
+
+    public void tick(){
+        health -= 10;
     }
+
+    public abstract void walk();
 }
 
 

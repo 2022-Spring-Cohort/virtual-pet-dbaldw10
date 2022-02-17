@@ -14,9 +14,7 @@ public class Main {
         String userChoice = "";
         System.out.println("Welcome to DragonWorld:Extinction of Mankind");
         while (shelter.allAnimalsHealthy()) {
-
             System.out.println(mainMenu());
-            Animal.tick();
             userChoice = userInput.nextLine();
 
 
@@ -25,40 +23,31 @@ public class Main {
                 String petName = userInput.nextLine();
                 shelter.walkPetByName(petName);
 
-            } else if (userChoice.equalsIgnoreCase("Fight Dallas")) {
-                System.out.println("Instant death");
-                System.exit(0);
             } else if (userChoice.equalsIgnoreCase("Doctor")) {
-                shelter.viewPetList();
+                shelter.viewOrganicAnimals();
                 String petName = userInput.nextLine();
                 shelter.doctorPetByName(petName);
 
-            } else if (userChoice.equalsIgnoreCase("Add a Dragon")) {
+            } else if (userChoice.equalsIgnoreCase("Add")) {
                 addPetToShelter();
-            } else if (userChoice.equalsIgnoreCase("View Pet Status")){
+            } else if (userChoice.equalsIgnoreCase("Status")){
                 shelter.getPetsStatus();
 
-            } else if (userChoice.equalsIgnoreCase("View All Pets")) {
+            } else if (userChoice.equalsIgnoreCase("All Pets")) {
                 shelter.viewPetList();
-            } else if (userChoice.equalsIgnoreCase("Train All Dragons")) {
+            } else if (userChoice.equalsIgnoreCase("Train All")) {
                 shelter.trainAllDragons();
 
-            } else if (userChoice.equalsIgnoreCase("Adopt a Dragon")) {
-                AdoptADragon();
-            } else if (userChoice.equalsIgnoreCase("Oil Robot Dragon")) {
+            } else if (userChoice.equalsIgnoreCase("Adopt")) {
+                AdoptAnAnimal();
+            } else if (userChoice.equalsIgnoreCase("Oil Robot")) {
                 shelter.viewRobots();
                 String petName = userInput.nextLine();
-                shelter.oilDragonByName(petName);
-            } else if (userChoice.equalsIgnoreCase("Clean Litter Boxes")) {
+                shelter.oilRobotByName(petName);
+            } else if (userChoice.equalsIgnoreCase("Clean")) {
                 shelter.viewOrganicAnimals();
                 String petName = userInput.nextLine();
-                shelter.oilDragonByName(petName);
-            }else if(userChoice.equalsIgnoreCase("Feed")) {
-                System.out.println("Which pet would you like to feed?");
-                shelter.viewPetList();
-                String petName = userInput.nextLine();
-                shelter.feedAnimalByName(petName);
-
+                shelter.cleanLitterBoxByName(petName);
             } else if (userChoice.equalsIgnoreCase("Exit")){
                 System.exit(0);
             } else
@@ -73,13 +62,15 @@ public class Main {
         menu += "Please enter a selection from the choice below.\n";
         menu += "View All Pets - Shows all pets in the shelter & adopted in one list\n";
         menu += "View Pet Status - Shows all pets status. \n";
-        menu += "Walk - drains energy and makes hungry and raise experience.\n";
-        menu += "Feed - feeds a hungry animal. \n";
-        menu += "Add An Animal - Lets you add an animal to the Shelter\n";
-        menu += "Doctor - Restores all animals health to 100.\n";
-        menu += "Adopt a Dragon - Take one home with you!\n";
-        menu += "Train All Dragons - Lowers all health.\n";
-        menu += "Oil Robot Dragon - Raises Oil LVl of Robot. \n";
+
+        menu += "Walk - drains energy.\n";
+        menu += "Clean - cleans litter completely \n";
+        menu += "Add a dragon - Lets you add a dragon to the Shelter\n";
+
+        menu += "Doctor - Restores an animals health to 100.\n";
+        menu += "Adopt - Take one home with you!\n";
+        menu += "Train All Organic  - Lowers all energy(not for robots they never tire.) \n";
+        menu += "Oil Robot - Raises Oil LVl of Robot. \n";
         menu += "Exit - Exit Game. \n";
 
         return menuBling(menu);
@@ -97,46 +88,43 @@ public class Main {
 
     public static Animal addPetToShelter() {
         System.out.println("Sorry we are only admitting Dragons at this time \n.");
+
         System.out.println("What is the name of Dragon being admitted?\n");
         Scanner scanner = new Scanner(System.in);
         String nameOfNewPet = scanner.next();
 
-        System.out.println("How Old is it?");
-        int newAge = scanner.nextInt();
-
-        System.out.println("How much energy does it have? 0-100");
-        int newEnergy = scanner.nextInt();
-
-
-        System.out.println("How healthy is it? 0-100");
+        System.out.println("How healthy is it?");
         scanner = new Scanner(System.in);
         int newHealth = scanner.nextInt();
 
+        System.out.println("How dirty is it?");
+        scanner = new Scanner(System.in);
+        int newLitter = scanner.nextInt();
 
-        Dragon newPet = new Dragon(nameOfNewPet, newAge, newEnergy, newHealth) {
+        System.out.println("What type is it?");
+        scanner = new Scanner(System.in);
+        String newType = scanner.nextLine();
+
+        System.out.println("How much energy does it have?");
+        scanner = new Scanner(System.in);
+        int newEnergy = scanner.nextInt();
+
+
+        OrganicDragon newDragon = new OrganicDragon(nameOfNewPet, newHealth, newType, newEnergy, newHealth, newLitter) {
+
+
+
             @Override
-            public void walk() {
-
-            }
-
-            @Override
-            void animalSound() {
-
-            }
-
-            @Override
-            void feed() {
-
+            void doctorPetByName() {
             }
         };
-        shelter.addPet(newPet);
+        shelter.addPet(newDragon);
 
-        return newPet;
+        return newDragon;
     }
 
-    public static void AdoptADragon() {
+    public static void AdoptAnAnimal() {
         Scanner userInput = new Scanner(System.in);
-
         System.out.println("Which dragon would you like to adopt?");
         shelter.viewPetList();
         String petNameToAdopt = userInput.nextLine();
